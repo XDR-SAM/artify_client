@@ -26,3 +26,4 @@ export const artworksAPI = {
   
   // Get featured artworks (6 most recent) fix later
   getFeatured: () => api.get('/api/artworks/featured'),
+}
