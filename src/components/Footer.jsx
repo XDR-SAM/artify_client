@@ -10,8 +10,7 @@ const Footer = () => {
           <div className="flex flex-col items-start space-y-4">
             <Link
               to="/"
-              className="text-3xl font-display font-bold text-brand tracking-tight hover:opacity-90 transition"
-            >
+              className="text-3xl font-display font-bold text-brand tracking-tight hover:opacity-90 transition">
               Artify
             </Link>
             <p className="max-w-sm text-sm leading-relaxed text-gray-600 dark:text-gray-400">
