@@ -28,9 +28,6 @@ export const artworksAPI = {
   getFeatured: () => api.get('/api/artworks/featured'),
 
 
-
-
-
   export const favoritesAPI = {
   // Get user's favorites
   getAll: () => api.get('/api/favorites'),
