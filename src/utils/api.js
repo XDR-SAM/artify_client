@@ -26,4 +26,18 @@ export const artworksAPI = {
   
   // Get featured artworks (6 most recent) fix later
   getFeatured: () => api.get('/api/artworks/featured'),
+
+
+
+
+
+  export const favoritesAPI = {
+  // Get user's favorites
+  getAll: () => api.get('/api/favorites'),
+  
+  // Add to favorites
+  add: (artworkId) => api.post('/api/favorites', { artworkId }),
+  
+  // Remove from favorites
+  remove: (artworkId) => api.delete(`/api/favorites/${artworkId}`),
 }
