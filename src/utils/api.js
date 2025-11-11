@@ -18,3 +18,11 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+// Artworks api
+export const artworksAPI = {
+  // Get all public artworks only for now fix later
+  getAll: (params = {}) => api.get('/api/artworks', { params }),
+  
+  // Get featured artworks (6 most recent) fix later
+  getFeatured: () => api.get('/api/artworks/featured'),
