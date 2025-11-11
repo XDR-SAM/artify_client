@@ -1,0 +1,61 @@
+/* Custom styles for dark mode  added*/
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Image Gallery Styles */
+.image-gallery {
+  width: 100%;
+  height: auto;
+}
+
+.image-gallery-slide img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.image-gallery-thumbnail img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+}
+
+/* Dark mode styles for image gallery */
+.dark .image-gallery-icon {
+  color: #ffffff;
+}
+
+.dark .image-gallery-icon:hover {
+  color: #f3b519;
+}
+
+/* ontrast in dark mode */
+.dark .btn {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .card {
+  background-color: #1f2937;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #374151;
+  color: #ffffff;
+  border-color: #4b5563;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: #f3b519;
+  outline: none;
+}
