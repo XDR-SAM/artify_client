@@ -61,7 +61,7 @@ const ExploreArtworks = () => {
           </div>
         </Fade>
 
-        {/* Search and Filter Section */}
+        {/* Search and filter section */}
         <Fade triggerOnce delay={100}>
           <div className="surface-card" data-padding="compact">
             <div className="flex flex-col md:flex-row gap-4">
@@ -90,7 +90,7 @@ const ExploreArtworks = () => {
                 />
               </div>
 
-              {/* Category Filter */}
+              {/* Category filter */}
               <div className="relative md:w-64">
                 <svg
                   className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
@@ -132,7 +132,7 @@ const ExploreArtworks = () => {
               </div>
             </div>
 
-            {/* Results Count */}
+            {/* Results count */}
             {!loading && (
               <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
                 {artworks.length === 0 ? (
@@ -147,14 +147,14 @@ const ExploreArtworks = () => {
           </div>
         </Fade>
 
-        {/* Loading State */}
+        {/* Loading state */}
         {loading && (
           <div className="flex justify-center py-12">
             <LoadingSpinner />
           </div>
         )}
 
-        {/* Empty State */}
+        {/* Empty state */}
         {!loading && artworks.length === 0 && (
           <Fade triggerOnce>
             <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-2xl">
@@ -190,7 +190,7 @@ const ExploreArtworks = () => {
           </Fade>
         )}
 
-        {/* Artworks Grid */}
+        {/* Artworks grid */}
         {!loading && artworks.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {artworks.map((artwork, index) => (
@@ -245,7 +245,7 @@ const ExploreArtworks = () => {
                       <Tooltip id={`likes-${artwork._id}`} />
                     </div>
 
-                    {/* View Button */}
+                    {/* View button */}
                     <Link to={`/artwork/${artwork._id}`} className="primary-btn w-full justify-center">
                       View Details
                     </Link>

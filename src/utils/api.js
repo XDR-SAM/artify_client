@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 const api = axios.create({
   baseURL: API_BASE_URL,
 });
@@ -26,20 +27,30 @@ export const artworksAPI = {
   
   // Get featured artworks (6 most recent) fix later
   getFeatured: () => api.get('/api/artworks/featured'),
-
-
-  export const favoritesAPI = {
+  // Get single artwork fix later
+  getById: (id) => api.get(`/api/artworks/${id}`),
+  
+  // Get user's artworks
+  getMyArtworks: () => api.get('/api/my-artworks'),
+  
+  // Add artwork
+  create: (data) => api.post('/api/artworks', data),
+  // Update artwork
+  update: (id, data) => api.put(`/api/artworks/${id}`, data),
+  // Delete artwork
+  delete: (id) => api.delete(`/api/artworks/${id}`),
+  // Like/Unlike artwork
+  like: (id, action) => api.patch(`/api/artworks/${id}/like`, { action }),
+};
+// Favorites API
+export const favoritesAPI = {
   // Get user's favorites
   getAll: () => api.get('/api/favorites'),
-  
   // Add to favorites
   add: (artworkId) => api.post('/api/favorites', { artworkId }),
-  
   // Remove from favorites
   remove: (artworkId) => api.delete(`/api/favorites/${artworkId}`),
-
-
-
+};
 // Artists api
 export const artistsAPI = {
   // Get artist info
@@ -48,6 +59,3 @@ export const artistsAPI = {
 
 export default api;
 
-
-
-}

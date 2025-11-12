@@ -1,5 +1,3 @@
-
-//from programing hero pdf i peaked up
 import { useTheme } from '../context/ThemeContext';
 
 const ToggleSwitch = () => {
@@ -18,7 +16,7 @@ const ToggleSwitch = () => {
         htmlFor="theme-toggle"
         className="relative flex items-center w-14 h-7 bg-gray-300 dark:bg-gray-700 rounded-full cursor-pointer transition-colors duration-300 peer-checked:bg-[#f3b519] shadow-inner"
       >
-        {/* Slider button */}
+        {/* Slider Button */}
         <span className="absolute left-1 top-1 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 peer-checked:translate-x-7 flex items-center justify-center">
           {/* Icon */}
           {isDark ? (

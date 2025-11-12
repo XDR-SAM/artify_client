@@ -79,7 +79,7 @@ const AddArtwork = () => {
         <Fade triggerOnce delay={100}>
           <div className="surface-card overflow-hidden">
             
-            {/* Image Preview Section */}
+            {/* Image Previewsection */}
             {imagePreview && (
               <div className="relative h-64 md:h-80 bg-gray-100 dark:bg-gray-800">
                 <img
@@ -98,7 +98,7 @@ const AddArtwork = () => {
             {/* Form */}
             <form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-6">
               
-              {/* Image URL */}
+              {/* Image url round fix done */}
               <div>
                 <label className="input-label flex items-center gap-1">
                   Image URL <span className="text-red-500">*</span>
@@ -129,7 +129,7 @@ const AddArtwork = () => {
                 </div>
               </div>
 
-              {/* Title & Category */}
+              {/* Title & category */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="input-label flex items-center gap-1">
@@ -179,7 +179,7 @@ const AddArtwork = () => {
                 </div>
               </div>
 
-              {/* Medium & Dimensions */}
+              {/* Medium & dimensions */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="input-label flex items-center gap-1">
@@ -211,7 +211,7 @@ const AddArtwork = () => {
                 </div>
               </div>
 
-              {/* Price & Visibility */}
+              {/* Price & visibility */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="input-label flex items-center gap-1">
@@ -305,7 +305,7 @@ const AddArtwork = () => {
                 />
               </div>
 
-              {/* Action Buttons */}
+              {/* Action buttons fix done*/}
               <div className="flex flex-col gap-4 pt-4 sm:flex-row">
                 <button
                   type="submit"
@@ -346,7 +346,7 @@ const AddArtwork = () => {
           </div>
         </Fade>
 
-        {/* Help Text */}
+        {/* Help text */}
         <Fade triggerOnce delay={200}>
           <div className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
             <p>Fields marked with <span className="text-red-500">*</span> are required</p>

@@ -4,13 +4,14 @@ const Footer = () => {
   return (
     <footer className="border-t border-gray-200/60 bg-white/80 text-gray-700 backdrop-blur-xl dark:border-gray-800/70 dark:bg-slate-950/70 dark:text-gray-300 transition-colors duration-300">
       <div className="mx-auto w-full max-w-7xl px-6 py-12">
-        {/* Footer grid */}
+        {/* Footergrid */}
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {/* Brand section */}
           <div className="flex flex-col items-start space-y-4">
             <Link
               to="/"
-              className="text-3xl font-display font-bold text-brand tracking-tight hover:opacity-90 transition">
+              className="text-3xl font-display font-bold text-brand tracking-tight hover:opacity-90 transition"
+            >
               Artify
             </Link>
             <p className="max-w-sm text-sm leading-relaxed text-gray-600 dark:text-gray-400">
@@ -22,7 +23,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Navigation Section */}
+          {/* Navigationsection */}
           <div className="flex flex-col items-start space-y-4">
             <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
               Navigation
@@ -46,13 +47,13 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact & social part */}
+          {/* Contact section */}
           <div className="flex flex-col items-start space-y-4">
             <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
               Stay in touch
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              contact@artify.com <br /> 01319685469
+              sami@artify.com <br /> +8801319685469
             </p>
 
             <div className="flex items-center gap-4">
@@ -103,10 +104,10 @@ const Footer = () => {
 
         {/* Bottom bar */}
         <div className="mt-12 border-t border-gray-200/60 dark:border-gray-800/60 pt-6 flex flex-col items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400 sm:flex-row">
-          <p>© {new Date().getFullYear()} Artify. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Artify by Sami. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <a
-              href="https://example.com/privacy"
+              href="https://www.google.com"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors duration-200 hover:text-brand"
@@ -114,7 +115,7 @@ const Footer = () => {
               Privacy
             </a>
             <a
-              href="https://example.com/terms"
+              href="https://www.google.com"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors duration-200 hover:text-brand"
@@ -122,7 +123,7 @@ const Footer = () => {
               Terms
             </a>
             <a
-              href="mailto:contact@artify.com"
+              href="sami@artify.com"
               className="transition-colors duration-200 hover:text-brand"
             >
               Support

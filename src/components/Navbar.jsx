@@ -1,11 +1,8 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-//pore add korbo api
 import ToggleSwitch from './ToggleSwitch';
 import { useState, useEffect, useRef } from 'react';
 import logo from '../assets/logo.png';
-
-
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -28,7 +25,7 @@ const Navbar = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  // Close dropdown error fix done
+  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -98,7 +95,7 @@ const Navbar = () => {
           </span>
         </Link>
 
-        {/* Desktop navigation bar set */}
+        {/* Desktop Navigation */}
         <div className="hidden items-center gap-1 text-sm font-semibold text-gray-600 dark:text-gray-300 lg:flex">
           {navLinks}
         </div>
@@ -107,7 +104,7 @@ const Navbar = () => {
         <div className="flex items-center gap-3 md:gap-4">
           <ToggleSwitch />
 
-          {/* Desktop auth frocess for future */}
+          {/* Desktop Auth */}
           <div className="hidden items-center gap-3 md:flex">
             {user ? (
               <>
@@ -119,7 +116,7 @@ const Navbar = () => {
                   Logout
                 </button>
                 
-                {/* Profile dropdown component */}
+                {/* Profile Dropdown */}
                 <div
                   ref={dropdownRef}
                   className="relative"
@@ -143,7 +140,7 @@ const Navbar = () => {
                       className="h-10 w-10 rounded-full object-cover"
                     />
                   </button>
-                        {/* shutdown vs dropdown created */}
+
                   {(showDropdown || dropdownOpen) && (
                     <div
                       className="absolute right-0 top-full mt-3 w-64 rounded-2xl border border-gray-200/70 bg-white/90 p-3 shadow-xl backdrop-blur-lg dark:border-gray-800/70 dark:bg-slate-900/90 z-50"
