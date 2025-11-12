@@ -1,16 +1,28 @@
-# React + Vite
+# ARTIFY
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Artify is a curated digital art marketplace that spotlights emerging creators, celebrates diverse art styles, and makes discovering inspiring pieces effortless.
 
-Currently, two official plugins are available:
+- **Live Site:** https://artify-sami.netlify.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Highlights
 
-## React Compiler
+- Dynamic hero and gallery experiences that showcase featured artists and collections in real time
+- Personalized artist pages with storytelling, social proof, and portfolio highlights
+- Interactive filtering and search tools to explore art by theme, medium, or popularity
+- Responsive layouts and smooth animations that feel at home on any device
+- Seamless onboarding and Firebase-authenticated flows that keep collectors engaged
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech & Packages
 
-## Expanding the ESLint configuration
+- React 19 with Vite for a modern, fast development experience
+- React Router v7 for client-side routing
+- Tailwind CSS 4 and DaisyUI components for styling and design consistency
+- Axios for REST API integration with the Artify backend
+- Firebase for authentication and backend services
+- React Awesome Reveal, React Hot Toast, React Simple Typewriter, and React Image Gallery for user experience enhancements
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+1. Install dependencies: `npm install`
+2. Run the development server: `npm run dev`
+3. Build for production: `npm run build`
