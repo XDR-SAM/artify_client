@@ -37,4 +37,33 @@ export const artworksAPI = {
   
   // Remove from favorites
   remove: (artworkId) => api.delete(`/api/favorites/${artworkId}`),
+
+
+
+
+
+
+
+
+
+
+// Artists api
+export const artistsAPI = {
+  // Get artist info
+  getByEmail: (email) => api.get(`/api/artists/${email}`),
+};
+
+export default api;
+
+
+
+
+
+
+
+
+
+
+
+
 }
