@@ -40,13 +40,6 @@ export const artworksAPI = {
 
 
 
-
-
-
-
-
-
-
 // Artists api
 export const artistsAPI = {
   // Get artist info
@@ -54,15 +47,6 @@ export const artistsAPI = {
 };
 
 export default api;
-
-
-
-
-
-
-
-
-
 
 
 
