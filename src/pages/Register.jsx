@@ -17,7 +17,7 @@ const Register = () => {
   const validatePassword = (pwd) => {
     const hasUpperCase = /[A-Z]/.test(pwd);
     const hasLowerCase = /[a-z]/.test(pwd);
-    const hasMinLength = pwd.length >= 6;
+  const hasMinLength = pwd.length >= 6;
     return hasUpperCase && hasLowerCase && hasMinLength;
   };
 
@@ -38,7 +38,7 @@ const Register = () => {
 
     setLoading(true);
     try {
-      await register(name, email, photoURL, password);
+    await register(name, email, photoURL, password);
       navigate('/');
     } catch (error) {
       console.error('Registration error:', error);
@@ -92,7 +92,7 @@ const Register = () => {
                   className="input-field"
                   placeholder="Your name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 />
               </div>
               <div>
@@ -113,14 +113,14 @@ const Register = () => {
               </div>
               <div>
                 <label htmlFor="photoURL" className="input-label">
-                  Photo URL (optional)
+                  Photo URL 
                 </label>
                 <input
                   id="photoURL"
                   name="photoURL"
                   type="url"
                   className="input-field"
-                  placeholder="https://example.com/photo.jpg"
+                  placeholder=""
                   value={photoURL}
                   onChange={(e) => setPhotoURL(e.target.value)}
                 />
