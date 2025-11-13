@@ -11,6 +11,7 @@ import ArtworkDetails from '../pages/ArtworkDetails';
 import MyGallery from '../pages/MyGallery';
 import MyFavorites from '../pages/MyFavorites';
 import NotFound from '../pages/NotFound';
+import ArtistDetailsGallery from '../pages/ArtistDetailsGallery';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: 'explore',
         element: <ExploreArtworks />,
+      },
+      {
+        path: 'artist/:email',
+        element: <ArtistDetailsGallery />,
       },
       {
         path: 'add-artwork',
