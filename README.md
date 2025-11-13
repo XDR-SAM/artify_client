@@ -7,7 +7,7 @@ Artify is a curated digital art marketplace that spotlights emerging creators, c
 ## Highlights
 
 - Dynamic hero and gallery experiences that showcase featured artists and collections in real time
-- Personalized artist pages with storytelling, social proof, and portfolio highlights
+- Personalized artist gallery with storytelling, social proof, and portfolio highlights
 - Interactive filtering and search tools to explore art by theme, medium, or popularity
 - Responsive layouts and smooth animations that feel at home on any device
 - Seamless onboarding and Firebase-authenticated flows that keep collectors engaged
