@@ -14,15 +14,19 @@ const ToggleSwitch = () => {
       />
       <label
         htmlFor="theme-toggle"
-        className="relative flex items-center w-14 h-7 bg-gray-300 dark:bg-gray-700 rounded-full cursor-pointer transition-colors duration-300 peer-checked:bg-[#f3b519] shadow-inner"
+        className="relative flex items-center w-14 h-7 bg-gray-300 dark:bg-gray-700 rounded-full cursor-pointer transition-colors duration-300 shadow-inner peer-checked:bg-brand"
       >
         {/* Slider Button */}
-        <span className="absolute left-1 top-1 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 peer-checked:translate-x-7 flex items-center justify-center">
+        <span
+          className={`absolute left-1 top-1 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 flex items-center justify-center ${
+            isDark ? 'translate-x-7' : 'translate-x-0'
+          }`}
+        >
           {/* Icon */}
           {isDark ? (
             // Moon Icon
             <svg
-              className="w-3 h-3 text-[#f3b519]"
+              className="w-3 h-3 text-brand"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
