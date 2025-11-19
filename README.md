@@ -1,3 +1,6 @@
+![artify](https://i.ibb.co/twYNy0H0/artifyss.png)
+
+
 # ARTIFY
 
 Artify is a curated digital art marketplace that spotlights emerging creators, celebrates diverse art styles, and makes discovering inspiring pieces effortless.
