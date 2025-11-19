@@ -1,4 +1,4 @@
-![artify](https://i.ibb.co/twYNy0H0/artifyss.png)
+![artify](artifyss.png)
 
 
 # ARTIFY
