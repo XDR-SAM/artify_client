@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { artworksAPI, favoritesAPI, artistsAPI } from '../utils/api';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -128,7 +128,7 @@ const ArtworkDetails = () => {
         <Fade triggerOnce>
           <button
             onClick={() => navigate(-1)}
-            className="mb-8 flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-brand dark:hover:text-brand transition-colors group"
+            className="mb-8 flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-[#f3b519] dark:hover:text-[#f3b519] transition-colors group"
           >
             <svg
               className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform"
@@ -192,7 +192,7 @@ const ArtworkDetails = () => {
                     onClick={handleFavorite}
                     className={`flex-1 px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 ${
                       isFavorite
-                        ? 'bg-brand text-black hover:bg-[#d9a515]'
+                        ? 'bg-[#f3b519] text-black hover:bg-[#d9a515]'
                         : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                     }`}
                   >
@@ -223,7 +223,7 @@ const ArtworkDetails = () => {
               {/* Title & Category */}
               <div className="mb-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="px-4 py-1.5 bg-brand/10 text-brand rounded-full text-sm font-semibold">
+                  <span className="px-4 py-1.5 bg-[#f3b519]/10 text-[#f3b519] rounded-full text-sm font-semibold">
                     {artwork.category}
                   </span>
                 </div>
@@ -273,7 +273,7 @@ const ArtworkDetails = () => {
                     </svg>
                     <div>
                       <p className="text-sm text-gray-500 dark:text-gray-400">Price</p>
-                      <p className="text-2xl font-bold text-brand">${artwork.price}</p>
+                      <p className="text-2xl font-bold text-[#f3b519]">${artwork.price}</p>
                     </div>
                   </div>
                 )}
@@ -319,7 +319,7 @@ const ArtworkDetails = () => {
                   onClick={handleFavorite}
                   className={`flex-1 px-6 py-4 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 ${
                     isFavorite
-                      ? 'bg-brand text-black hover:bg-[#d9a515]'
+                      ? 'bg-[#f3b519] text-black hover:bg-[#d9a515]'
                       : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                   }`}
                 >
@@ -342,19 +342,9 @@ const ArtworkDetails = () => {
 
               {/* Artist Information */}
               {artist && (
-                <Link
-                  to={`/artist/${encodeURIComponent(artwork.userEmail)}`}
-                  className="block p-6 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-brand hover:bg-brand/10 dark:hover:border-brand transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand"
-                  aria-label={`View ${artist.name}'s public gallery`}
-                >
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center justify-between gap-2">
-                    <span>About the Artist</span>
-                    <span className="text-sm font-semibold text-brand flex items-center gap-1">
-                      View Gallery
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </span>
+                <div className="p-6 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                    About the Artist
                   </h3>
                   <div className="flex items-center gap-4">
                     {artist.photoURL && (
@@ -371,7 +361,7 @@ const ArtworkDetails = () => {
                       </p>
                     </div>
                   </div>
-                </Link>
+                </div>
               )}
             </div>
           </Fade>

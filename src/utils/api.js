@@ -27,6 +27,7 @@ export const artworksAPI = {
   
   // Get featured artworks (6 most recent) fix later
   getFeatured: () => api.get('/api/artworks/featured'),
+  
   // Get single artwork fix later
   getById: (id) => api.get(`/api/artworks/${id}`),
   
@@ -35,22 +36,29 @@ export const artworksAPI = {
   
   // Add artwork
   create: (data) => api.post('/api/artworks', data),
+  
   // Update artwork
   update: (id, data) => api.put(`/api/artworks/${id}`, data),
+  
   // Delete artwork
   delete: (id) => api.delete(`/api/artworks/${id}`),
+  
   // Like/Unlike artwork
   like: (id, action) => api.patch(`/api/artworks/${id}/like`, { action }),
 };
+
 // Favorites API
 export const favoritesAPI = {
   // Get user's favorites
   getAll: () => api.get('/api/favorites'),
+  
   // Add to favorites
   add: (artworkId) => api.post('/api/favorites', { artworkId }),
+  
   // Remove from favorites
   remove: (artworkId) => api.delete(`/api/favorites/${artworkId}`),
 };
+
 // Artists api
 export const artistsAPI = {
   // Get artist info
