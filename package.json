@@ -22,6 +22,7 @@
     "react-router-dom": "^7.9.5",
     "react-simple-typewriter": "^5.0.1",
     "react-tooltip": "^5.30.0",
+    "recharts": "^3.6.0",
     "styled-components": "^6.1.19",
     "tailwindcss": "^4.1.17"
   },

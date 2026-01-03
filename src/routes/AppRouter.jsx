@@ -12,6 +12,9 @@ import MyGallery from '../pages/MyGallery';
 import MyFavorites from '../pages/MyFavorites';
 import NotFound from '../pages/NotFound';
 
+import DashboardLayout from '../components/DashboardLayout';
+import Dashboard from '../pages/Dashboard';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -38,34 +41,36 @@ const router = createBrowserRouter([
         element: <ExploreArtworks />,
       },
       {
-        path: 'add-artwork',
-        element: (
-          <PrivateRoute>
-            <AddArtwork />
-          </PrivateRoute>
-        ),
-      },
-      {
         path: 'artwork/:id',
         element: <ArtworkDetails />,
+      }
+    ],
+  },
+  {
+    path: '/',
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: 'dashboard',
+        element: <Dashboard />,
+      },
+      {
+        path: 'add-artwork',
+        element: <AddArtwork />,
       },
       {
         path: 'my-gallery',
-        element: (
-          <PrivateRoute>
-            <MyGallery />
-          </PrivateRoute>
-        ),
+        element: <MyGallery />,
       },
       {
         path: 'my-favorites',
-        element: (
-          <PrivateRoute>
-            <MyFavorites />
-          </PrivateRoute>
-        ),
+        element: <MyFavorites />,
       },
-    ],
+    ]
   },
   {
     path: '*',
