@@ -39,11 +39,16 @@ const Login = () => {
     }
   };
 
+  const handleDemoLogin = () => {
+    setEmail('demo@artify.com');
+    setPassword('Demo123');
+  };
+
   return (
     <div className="relative flex min-h-[calc(100vh-160px)] items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
       <Fade triggerOnce>
         <div className="w-full max-w-md space-y-8">
-          
+
           {/* Header site */}
           <div className="text-center space-y-3">
             <h1 className="text-4xl font-display font-bold text-gray-900 dark:text-white md:text-5xl">
@@ -56,10 +61,10 @@ const Login = () => {
 
           {/* Form container */}
           <div className="surface-card backdrop-sheen" data-padding="compact">
-            
+
             {/* Login Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
-              
+
               {/* Email input */}
               <div>
                 <label
@@ -90,7 +95,7 @@ const Login = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                  className="input-field pl-12 pr-4"
+                    className="input-field pl-12 pr-4"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -126,7 +131,7 @@ const Login = () => {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                  className="input-field pl-12 pr-12"
+                    className="input-field pl-12 pr-12"
                     placeholder="••••••••"
                   />
                   <button
@@ -203,7 +208,24 @@ const Login = () => {
                 )}
               </button>
 
-              {/* Divider base*/}
+              {/* Demo User Button */}
+              <button
+                type="button"
+                onClick={handleDemoLogin}
+                className="secondary-btn w-full justify-center border-2 py-3.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-transparent hover:from-purple-600 hover:to-pink-600"
+              >
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>Use Demo Account</span>
+              </button>
+
+              {/* Divider */}
               <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-300 dark:border-gray-700" />

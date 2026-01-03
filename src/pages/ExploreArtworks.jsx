@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { artworksAPI } from '../utils/api';
 import LoadingSpinner from '../components/LoadingSpinner';
+import ArtworkCard from '../components/ArtworkCard';
+import SkeletonCard from '../components/SkeletonCard';
 import { Fade } from 'react-awesome-reveal';
 import { Tooltip } from 'react-tooltip';
 
@@ -10,6 +12,10 @@ const ExploreArtworks = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('All');
+  const [sortBy, setSortBy] = useState('recent'); // recent, likes, title
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+
   const categories = [
     'All',
     'Painting',
@@ -20,6 +26,7 @@ const ExploreArtworks = () => {
     'Mixed Media',
     'Other',
   ];
+
 
   useEffect(() => {
     const fetchArtworks = async () => {
@@ -41,6 +48,29 @@ const ExploreArtworks = () => {
     return () => clearTimeout(debounceTimer);
   }, [search, category]);
 
+  // Sort artworks
+  const sortedArtworks = [...artworks].sort((a, b) => {
+    switch (sortBy) {
+      case 'likes':
+        return (b.likes || 0) - (a.likes || 0);
+      case 'title':
+        return a.title.localeCompare(b.title);
+      case 'recent':
+      default:
+        return new Date(b.createdAt || 0) - new Date(a.createdAt || 0);
+    }
+  });
+
+  // Pagination
+  const totalPages = Math.ceil(sortedArtworks.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedArtworks = sortedArtworks.slice(startIndex, startIndex + itemsPerPage);
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, category, sortBy]);
+
   if (loading && artworks.length === 0) {
     return <LoadingSpinner />;
   }
@@ -48,7 +78,7 @@ const ExploreArtworks = () => {
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl space-y-12">
-        
+
         {/* Header */}
         <Fade triggerOnce>
           <div className="text-center space-y-4">
@@ -65,7 +95,7 @@ const ExploreArtworks = () => {
         <Fade triggerOnce delay={100}>
           <div className="surface-card" data-padding="compact">
             <div className="flex flex-col md:flex-row gap-4">
-              
+
               {/* Search Input */}
               <div className="flex-1 relative">
                 <svg
@@ -130,32 +160,75 @@ const ExploreArtworks = () => {
                   />
                 </svg>
               </div>
+
+              {/* Sort dropdown */}
+              <div className="relative md:w-48">
+                <svg
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"
+                  />
+                </svg>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="input-field pl-12 pr-10 appearance-none cursor-pointer"
+                >
+                  <option value="recent">Most Recent</option>
+                  <option value="likes">Most Liked</option>
+                  <option value="title">Title (A-Z)</option>
+                </select>
+                <svg
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </div>
             </div>
 
             {/* Results count */}
             {!loading && (
-              <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-                {artworks.length === 0 ? (
-                  <span>No artworks found</span>
-                ) : (
-                  <span>
-                    Showing <span className="font-semibold text-gray-900 dark:text-white">{artworks.length}</span> {artworks.length === 1 ? 'artwork' : 'artworks'}
-                  </span>
-                )}
+              <div className="mt-4 flex justify-between items-center text-sm text-gray-600 dark:text-gray-400">
+                <div>
+                  {sortedArtworks.length === 0 ? (
+                    <span>No artworks found</span>
+                  ) : (
+                    <span>
+                      Showing <span className="font-semibold text-gray-900 dark:text-white">{startIndex + 1}-{Math.min(startIndex + itemsPerPage, sortedArtworks.length)}</span> of <span className="font-semibold text-gray-900 dark:text-white">{sortedArtworks.length}</span> {sortedArtworks.length === 1 ? 'artwork' : 'artworks'}
+                    </span>
+                  )}
+                </div>
               </div>
             )}
           </div>
         </Fade>
 
-        {/* Loading state */}
+        {/* Loading state with skeletons */}
         {loading && (
-          <div className="flex justify-center py-12">
-            <LoadingSpinner />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {[...Array(12)].map((_, index) => (
+              <SkeletonCard key={index} />
+            ))}
           </div>
         )}
 
         {/* Empty state */}
-        {!loading && artworks.length === 0 && (
+        {!loading && sortedArtworks.length === 0 && (
           <Fade triggerOnce>
             <div className="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-2xl">
               <svg
@@ -191,69 +264,70 @@ const ExploreArtworks = () => {
         )}
 
         {/* Artworks grid */}
-        {!loading && artworks.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {artworks.map((artwork, index) => (
-              <Fade key={artwork._id} triggerOnce delay={index * 50}>
-                <div className="group overflow-hidden rounded-2xl border border-gray-200/70 bg-white/80 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-gray-800/70 dark:bg-slate-900/80">
-                  
-                  {/* Image */}
-                  <div className="relative overflow-hidden aspect-[4/3]">
-                    <img
-                      src={artwork.imageURL}
-                      alt={artwork.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    {/* Category badge */}
-                    <div className="absolute top-4 left-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-gray-900 dark:text-white">
-                      {artwork.category}
-                    </div>
+        {!loading && paginatedArtworks.length > 0 && (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              {paginatedArtworks.map((artwork, index) => (
+                <Fade key={artwork._id} triggerOnce delay={index * 30}>
+                  <ArtworkCard artwork={artwork} />
+                </Fade>
+              ))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <Fade triggerOnce>
+                <div className="flex justify-center items-center gap-2 mt-12">
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    Previous
+                  </button>
+
+                  <div className="flex gap-2">
+                    {[...Array(totalPages)].map((_, index) => {
+                      const pageNum = index + 1;
+                      // Show first page, last page, current page, and pages around current
+                      if (
+                        pageNum === 1 ||
+                        pageNum === totalPages ||
+                        (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)
+                      ) {
+                        return (
+                          <button
+                            key={pageNum}
+                            onClick={() => setCurrentPage(pageNum)}
+                            className={`px-4 py-2 rounded-lg font-medium transition-colors ${currentPage === pageNum
+                                ? 'bg-brand text-black'
+                                : 'border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800'
+                              }`}
+                          >
+                            {pageNum}
+                          </button>
+                        );
+                      } else if (
+                        pageNum === currentPage - 2 ||
+                        pageNum === currentPage + 2
+                      ) {
+                        return <span key={pageNum} className="px-2 py-2 text-gray-500">...</span>;
+                      }
+                      return null;
+                    })}
                   </div>
 
-                  {/* Content */}
-                  <div className="space-y-4 p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 transition-colors group-hover:text-brand dark:text-white">
-                      {artwork.title}
-                    </h3>
-                    
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-1">
-                      <span className="font-medium text-gray-700 dark:text-gray-300">Artist:</span> {artwork.artistName}
-                    </p>
-
-                    {/* Likes */}
-                    <div className="flex items-center gap-2">
-                      <span
-                        data-tooltip-id={`likes-${artwork._id}`}
-                        data-tooltip-content="Total Likes"
-                        className="inline-flex items-center gap-1.5 rounded-full bg-brand/10 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-brand"
-                      >
-                        <svg
-                          className="w-4 h-4 text-red-500"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        <span className="font-medium">{artwork.likes || 0}</span>
-                      </span>
-                      <Tooltip id={`likes-${artwork._id}`} />
-                    </div>
-
-                    {/* View button */}
-                    <Link to={`/artwork/${artwork._id}`} className="primary-btn w-full justify-center">
-                      View Details
-                    </Link>
-                  </div>
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                    className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    Next
+                  </button>
                 </div>
               </Fade>
-            ))}
-          </div>
+            )}
+          </>
         )}
       </div>
     </section>

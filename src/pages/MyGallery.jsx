@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { artworksAPI } from '../utils/api';
 import LoadingSpinner from '../components/LoadingSpinner';
+import ArtworkCard from '../components/ArtworkCard';
 import { Fade } from 'react-awesome-reveal';
 import toast from 'react-hot-toast';
 
@@ -116,7 +117,7 @@ const MyGallery = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       <div className="container mx-auto px-4 py-12 md:py-16">
-        
+
         {/* Header */}
         <Fade triggerOnce>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
@@ -180,96 +181,15 @@ const MyGallery = () => {
           </Fade>
         ) : (
           /* Artworks grid */
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {artworks.map((artwork, index) => (
               <Fade key={artwork._id} triggerOnce delay={index * 50}>
-                <div className="group bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-800">
-                  
-                  {/* Image */}
-                  <div className="relative overflow-hidden aspect-[4/3]">
-                    <img
-                      src={artwork.imageURL}
-                      alt={artwork.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    {/* Visibility badge */}
-                    <div className="absolute top-4 right-4">
-                      <div className={`px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm ${
-                        artwork.visibility === 'Public'
-                          ? 'bg-green-500/90 text-white'
-                          : 'bg-gray-800/90 text-white'
-                      }`}>
-                        {artwork.visibility === 'Public' ? '🌍 Public' : '🔒 Private'}
-                      </div>
-                    </div>
-
-                    {/* Category badge */}
-                    <div className="absolute top-4 left-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-gray-900 dark:text-white">
-                      {artwork.category}
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-1">
-                      {artwork.title}
-                    </h3>
-
-                    {/* Stats */}
-                    <div className="flex items-center gap-3 mb-4 text-sm text-gray-600 dark:text-gray-400">
-                      <span className="flex items-center gap-1">
-                        <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                          <path
-                            fillRule="evenodd"
-                            d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        <span className="font-medium">{artwork.likes || 0}</span>
-                      </span>
-                    </div>
-
-                    {/* Action buttons */}
-                    <div className="flex gap-2">
-                      <Link
-                        to={`/artwork/${artwork._id}`}
-                        className="flex-1 text-center px-3 py-2 bg-[#f3b519] text-black font-semibold rounded-lg hover:bg-[#d9a515] transition-all duration-300 text-sm"
-                      >
-                        View
-                      </Link>
-                      <button
-                        onClick={() => handleEdit(artwork)}
-                        className="px-3 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-all duration-300 text-sm"
-                        title="Edit artwork"
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                          />
-                        </svg>
-                      </button>
-                      <button
-                        onClick={() => handleDeleteClick(artwork._id)}
-                        className="px-3 py-2 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition-all duration-300 text-sm"
-                        title="Delete artwork"
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <ArtworkCard
+                  artwork={artwork}
+                  showActions={true}
+                  onEdit={handleEdit}
+                  onDelete={handleDeleteClick}
+                />
               </Fade>
             ))}
           </div>
@@ -279,7 +199,7 @@ const MyGallery = () => {
         {showModal && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
             <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-3xl w-full flex flex-col max-h-[90vh] border border-gray-200 dark:border-gray-800">
-              
+
               {/* Modal header */}
               <div className="flex-shrink-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-6 py-4 flex items-center justify-between">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -314,7 +234,7 @@ const MyGallery = () => {
               {/* Modal Body - Scrollable  fix done*/}
               <div className="flex-1 overflow-y-auto px-6 py-6 min-h-0">
                 <form onSubmit={handleUpdate} id="update-form" className="space-y-5">
-                  
+
                   {/* Image url round fix done */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
@@ -516,7 +436,7 @@ const MyGallery = () => {
           </div>
         )}
       </div>
-    </div>
+    </div >
   );
 };
 

@@ -20,6 +20,7 @@ const ArtworkDetails = () => {
   useEffect(() => {
     const fetchArtwork = async () => {
       try {
+        // Fetch artwork without authentication - public access
         const response = await artworksAPI.getById(id);
         setArtwork(response.data);
         setLikes(response.data.likes || 0);
@@ -123,7 +124,7 @@ const ArtworkDetails = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       <div className="container mx-auto px-4 py-8 md:py-12 max-w-7xl">
-        
+
         {/* Back Button */}
         <Fade triggerOnce>
           <button
@@ -149,7 +150,7 @@ const ArtworkDetails = () => {
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-          
+
           {/* Left: Image */}
           <Fade triggerOnce>
             <div className="relative">
@@ -161,16 +162,15 @@ const ArtworkDetails = () => {
                     className="w-full h-auto object-contain"
                   />
                 </div>
-                
+
                 {/* Like & Favorite Buttons - Mobile */}
                 <div className="lg:hidden mt-6 flex gap-3">
                   <button
                     onClick={handleLike}
-                    className={`flex-1 px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 ${
-                      isLiked
+                    className={`flex-1 px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 ${isLiked
                         ? 'bg-red-500 text-white hover:bg-red-600'
                         : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                    }`}
+                      }`}
                   >
                     <svg
                       className="w-5 h-5"
@@ -187,14 +187,13 @@ const ArtworkDetails = () => {
                     </svg>
                     <span>{likes}</span>
                   </button>
-                  
+
                   <button
                     onClick={handleFavorite}
-                    className={`flex-1 px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 ${
-                      isFavorite
+                    className={`flex-1 px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 ${isFavorite
                         ? 'bg-[#f3b519] text-black hover:bg-[#d9a515]'
                         : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                    }`}
+                      }`}
                   >
                     <svg
                       className="w-5 h-5"
@@ -219,7 +218,7 @@ const ArtworkDetails = () => {
           {/* Right: Details */}
           <Fade triggerOnce delay={100}>
             <div>
-              
+
               {/* Title & Category */}
               <div className="mb-6">
                 <div className="flex items-center gap-3 mb-3">
@@ -293,11 +292,10 @@ const ArtworkDetails = () => {
               <div className="hidden lg:flex gap-4 mb-8">
                 <button
                   onClick={handleLike}
-                  className={`flex-1 px-6 py-4 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 ${
-                    isLiked
+                  className={`flex-1 px-6 py-4 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 ${isLiked
                       ? 'bg-red-500 text-white hover:bg-red-600'
                       : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                  }`}
+                    }`}
                 >
                   <svg
                     className="w-6 h-6"
@@ -317,11 +315,10 @@ const ArtworkDetails = () => {
 
                 <button
                   onClick={handleFavorite}
-                  className={`flex-1 px-6 py-4 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 ${
-                    isFavorite
+                  className={`flex-1 px-6 py-4 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 ${isFavorite
                       ? 'bg-[#f3b519] text-black hover:bg-[#d9a515]'
                       : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                  }`}
+                    }`}
                 >
                   <svg
                     className="w-6 h-6"
